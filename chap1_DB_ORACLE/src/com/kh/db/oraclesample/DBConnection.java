@@ -13,7 +13,8 @@ public class DBConnection {
 		// 코드가 부적합하다라는 오류가 뜨게되면 무조건 코드가 잘못된 것이므로 코드를 다시 확인할 것 !
 		//selectBank();
 		//selectkhCafe();
-		selectIf();
+		//selectIf();
+		selectChoon();
 		
 	}
 	
@@ -117,7 +118,7 @@ public class DBConnection {
 			selectState.setInt(1, targetAID);
 			ResultSet result = selectState.executeQuery();
 			*/
-			
+			 
 			String[] targetAN = {"1234567890","5555666777"};
 			selectState.setString(1, targetAN[0]);
 			selectState.setString(2, targetAN[1]);
@@ -157,6 +158,48 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+	}
+	
+	static void selectChoon() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "homework";
+		String password = "homework";
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection(url, user, password);
+			String selectQuery = "SELECT * FROM tb_student WHERE student_no = ?";
+			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			
+			String targetSNo = "A013116";
+			selectState.setString(1, targetSNo);
+			ResultSet result = selectState.executeQuery();
+			
+			while(result.next()) {
+				System.out.println("연결됐다.");
+				
+				String studentNo = result.getString("student_no");
+				int departmentNo = result.getInt("department_no");
+				String studentName = result.getString("studnet_name");
+				String studentSSN = result.getString("student_SSN");
+				String studentAddress = result.getString("student_address");
+				Date entranceDate = result.getDate("entrance_date");
+				String absenceYN = result.getString("absence_YN");
+				/*char[] charArray = absenceYN.toCharArray();
+				for(char c : charArray) {
+				}*/
+				String coachNo = result.getString("coach_professor_no");
+				
+				System.out.println("학번 : " + studentNo + " | 학과번호 : " + departmentNo + " | 이름 : " + studentName
+						+ " | 주민번호 : " + studentSSN + " | 주소 : " + studentAddress + " | 입학일 : " + entranceDate
+						+ " | 휴학여부(Y/N) : " + absenceYN + " | 지도교수 : " + coachNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 }
