@@ -123,6 +123,10 @@ public class DBConnection {
 			selectState.setString(2, targetAN[1]);
 			ResultSet result = selectState.executeQuery();
 			
+			// 값 존재 여부
+			if (!result.isBeforeFirst()) {
+				System.out.println("데이터 없음");
+			}
 			while (result.next()) {
 				int a = result.getInt("account_id");
 				String b = result.getString("account_number");
@@ -134,7 +138,8 @@ public class DBConnection {
 						+ " | Balance : " + d + " | Branch_Name : " + e + " | Last_Transaction_Date : " + f);
 			}
 			
-			/*if문	
+			/*if문
+			
 			if (result.next()) {
 				int a = result.getInt("account_id");
 				String b = result.getString("account_number");
