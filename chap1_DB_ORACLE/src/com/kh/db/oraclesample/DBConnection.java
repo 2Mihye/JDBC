@@ -14,7 +14,8 @@ public class DBConnection {
 		//selectBank();
 		//selectkhCafe();
 		//selectIf();
-		selectChoon();
+		//selectChoon();
+		insertBank();
 		
 	}
 	
@@ -173,13 +174,11 @@ public class DBConnection {
 			String selectQuery = "SELECT * FROM tb_student WHERE student_no = ?";
 			PreparedStatement selectState = con.prepareStatement(selectQuery);
 			
-			String targetSNo = "A013116";
+			String targetSNo = "A213046";
 			selectState.setString(1, targetSNo);
 			ResultSet result = selectState.executeQuery();
 			
 			while(result.next()) {
-				System.out.println("연결됐다.");
-				
 				String studentNo = result.getString("student_no");
 				int departmentNo = result.getInt("department_no");
 				String studentName = result.getString("student_name");
@@ -196,6 +195,30 @@ public class DBConnection {
 						+ " | 주민번호 : " + studentSSN + " | 주소 : " + studentAddress + " | 입학일 : " + entranceDate
 						+ " | 휴학여부(Y/N) : " + absenceYN + " | 지도교수 : " + coachNo);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	static void insertBank() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "KHBANK";
+		String password = "KHBANK";
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction_date)"
+					+ "VALUES (?, ?, ?, ?, ?, ?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 13);
+			insertState.setString(2, "19950601");
+			insertState.setString(3, "이미주");
+			insertState.setDouble(4, 1500.00);
+			insertState.setString(5, "KH");
+			insertState.setDate(6, Date.valueOf("2023-10-16"));
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row(행) 추가");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
