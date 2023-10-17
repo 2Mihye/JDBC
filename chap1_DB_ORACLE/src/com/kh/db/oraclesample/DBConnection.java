@@ -15,7 +15,8 @@ public class DBConnection {
 		//selectkhCafe();
 		//selectIf();
 		//selectChoon();
-		insertBank();
+		//insertBank();
+		insertKhCafe();
 		
 	}
 	
@@ -221,8 +222,28 @@ public class DBConnection {
 			System.out.println(rowsInsert + "row(행) 추가");
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	
+	}
+	
+	static void insertKhCafe() {
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khcafe";
+		String password = "khcafe";
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String insertQuery = "INSERT INTO CAFES (cafe_id, cname, caddress, phone_number, operating_hours)"
+					+ "VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			insertState.setInt(1, 20);
+			insertState.setString(2, "미혜다방");
+			insertState.setString(3, "서울시 천당구 천사로 77-7");
+			insertState.setString(4, "010-000-0000");
+			insertState.setString(5, "매일: 09:00-20:00");
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "행 추가");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		
-		
 	}
 }
