@@ -5,10 +5,22 @@ JDBC (Java DataBase Connectivity)
     주요 사용 클래스와 인터페이스
     1. Connection : 데이터베이스와 연결을 나타내는 인터페이스로 데이터베이스 연결을 설정하고 관리하는데 사용한다.
        DriverManager : 데이터베이스 드라이버를 관리하고, 데이터베이스와 연결을 설정하는데 사용한다.
+       String url = "JDBC:oracle:thin:@localhhost:1521:xe";
+       Connection con = DriverManager.getConnection(url, user, password);
+       JDBC:oracle:thin: : JDBC URL의 프로토콜 부분을 나타내고, Oracle에서 JDBC 드라이버가 "thin"이라는 연결 방식을 사용하여 데이터베이스에 연결할 것을 나타냄(*프로토콜이란? 컴퓨터 내부에서 교환방식을 정의하는 규칙)
+       :@localhhost:1521:xe : 호스트, 포트, Oracle서비스 이름 지정(SID)
+
+       Oracle JDBC 드라이버의 연결 유형
+            1. thin : 데이터베이스에 연결하기 위해 클라이언트 시스템을 따로 설치할 필요가 없다.
+                      jdbc:oracle:thin:@<hostname>:<portnumber>:<SID>
+            2. OCI : 데이터베이스에 연결하기 위해 클라이언트 라이브러리를 따로 설치해야 한다.
+                      jdbc:oracle:oci:@<TNS_NAME>
+
     2. Statement : SQL 쿼리를 실행하는데 사용되는 인터페이스로 주로 동적쿼리를 실행할 때 사용한다.
        PreparedStatment : 미리 컴파일된 SQL 쿼리를 실행하는데 사용되는 인터페이스로 쿼리에 매개변수를 전달하기 쉽고 SQL 인젝션 공격을 방지한다.
                  *인젝션 : 공격자가 신뢰할 수 없는 입력을 프로그램에 주입하도록 하는 공격
     3. ResultSet : SQL 쿼리 실행 결과를 나타내는 인터페이스로 결과 집합에서 데이터를 검색하고 처리하는데 사용한다.
+       * isBeforeFirst() : resultSet 데이터가 없는 경우를 확인하기 위해 사용
 
 
     예제코드)
