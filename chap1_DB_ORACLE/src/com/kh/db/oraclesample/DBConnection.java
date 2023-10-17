@@ -182,7 +182,7 @@ public class DBConnection {
 				
 				String studentNo = result.getString("student_no");
 				int departmentNo = result.getInt("department_no");
-				String studentName = result.getString("studnet_name");
+				String studentName = result.getString("student_name");
 				String studentSSN = result.getString("student_SSN");
 				String studentAddress = result.getString("student_address");
 				Date entranceDate = result.getDate("entrance_date");
