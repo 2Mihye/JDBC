@@ -137,7 +137,7 @@ public class DBConnection {
 				System.out.println("Account_ID : " + a + " | Account_No : " + b + " | Account_Name : " + c
 						+ " | Balance : " + d + " | Branch_Name : " + e + " | Last_Transaction_Date : " + f);
 			}
-			 
+			
 			/*if¹®
 			
 			if (result.next()) {
