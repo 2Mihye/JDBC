@@ -23,7 +23,7 @@ public class insertBook {
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insertPs = con.prepareStatement(insertSQL);
 			
-			//insertBook (ps, "마틸다", "로알드 달", 1995, "978-0101010101", "Novel", "초등학생 마틸다의 초능력 발현?!", 12.99, Date.valueOf("1995-10-19"), Date.valueOf("2023-10-15"), null, "Y");
+			//insertBook (insertPs, "마틸다", "로알드 달", 1995, "978-0101010101", "Novel", "초등학생 마틸다의 초능력 발현?!", 12.99, Date.valueOf("1995-10-19"), Date.valueOf("2023-10-15"), null, "Y");
 			insertPs.setInt(1, 27);
 			insertPs.setString(2, "마틸다");
 			insertPs.setString(3, "로알드 달");
@@ -103,7 +103,7 @@ public class insertBook {
 			PreparedStatement ps = con.prepareStatement(insertSQL);
 			
 			//insertBook (ps, 25, "감동적인 책", "백구", 1993, "978-0987654321", "Novel", "백구의 주인찾아 삼만리를 다룬 감동적인 책", 12.99, Date.valueOf("1993-02-09"), Date.valueOf("2023-10-16"), null, "Y");
-			insertBook (ps, "찰리와 초콜릿 공장", "로알드 달", 1993, "978-0011223344", "Novel", "가난한 아이 찰리의 한방 인생역전 스토리", 13.99, Date.valueOf("1995-06-01"), Date.valueOf("2023-10-17"), null, "Y");
+			//insertBook (ps, "찰리와 초콜릿 공장", "로알드 달", 1993, "978-0011223344", "Novel", "가난한 아이 찰리의 한방 인생역전 스토리", 13.99, Date.valueOf("1995-06-01"), Date.valueOf("2023-10-17"), null, "Y");
 			
 			int rowsInsert = ps.executeUpdate();
 			System.out.println(rowsInsert + "행 삽입 완료");
@@ -132,7 +132,7 @@ public class insertBook {
 		ps.setDate(11, updated_date);
 		ps.setString(12, is_available);
 		int rows = ps.executeUpdate();
-		if(rows )
+		//if(rows )
 		ps.executeUpdate();		
 	}
 }
