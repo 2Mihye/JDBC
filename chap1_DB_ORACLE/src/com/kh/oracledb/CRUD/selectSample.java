@@ -1,4 +1,4 @@
-package com.kh.db.oraclesample;
+package com.kh.oracledb.CRUD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,20 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 
-public class DBConnection {
+public class selectSample {
 
 	public static void main(String[] args) {
 		// 코드가 부적합하다라는 오류가 뜨게되면 무조건 코드가 잘못된 것이므로 코드를 다시 확인할 것 !
-		//selectBank();
-		//selectkhCafe();
+		//selectAll();
+		//selectOne();
 		//selectIf();
 		//selectChoon();
-		//insertBank();
-		insertKhCafe();
 		
 	}
 	
-	static void selectBank() {
+	static void selectAll() {
 		// 1. 드라이버 연결 : 오라클 JDBC 드라이버 클래스 이름
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		// 2. 오라클 내 컴퓨터 연결 : 데이터베이스 연결 정보
@@ -61,7 +59,7 @@ public class DBConnection {
 		}
 	}
 
-	static void selectkhCafe() { // select * from menu 작성해서 menu table 가져오기
+	static void selectOne() { // select * from menu 작성해서 menu table 가져오기
 		// 1. 드라이버 연결 : 오라클 JDBC 드라이버 클래스 이름
 				String driver = "oracle.jdbc.driver.OracleDriver";
 				// 2. 오라클 내 컴퓨터 연결 : 데이터베이스 연결 정보
@@ -201,49 +199,30 @@ public class DBConnection {
 		}
 		
 	}
-	
-	static void insertBank() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "KHBANK";
-		String password = "KHBANK";
-		try {
-			Connection con = DriverManager.getConnection(url, user, password);
-			String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction_date)"
-					+ "VALUES (?, ?, ?, ?, ?, ?)";
-			PreparedStatement insertState = con.prepareStatement(insertQuery);
-			insertState.setInt(1, 13);
-			insertState.setString(2, "19950601");
-			insertState.setString(3, "이미주");
-			insertState.setDouble(4, 1500.00);
-			insertState.setString(5, "KH");
-			insertState.setDate(6, Date.valueOf("2023-10-16"));
-			
-			int rowsInsert = insertState.executeUpdate();
-			System.out.println(rowsInsert + "row(행) 추가");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	static void insertKhCafe() {
+
+
+	static void selectKhcafe() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "khcafe";
 		String password = "khcafe";
+		
 		try {
 			Connection con = DriverManager.getConnection(url, user, password);
-			String insertQuery = "INSERT INTO CAFES (cafe_id, cname, caddress, phone_number, operating_hours)"
-					+ "VALUES (?, ?, ?, ?, ?)";
-			PreparedStatement insertState = con.prepareStatement(insertQuery);
-			insertState.setInt(1, 20);
-			insertState.setString(2, "미혜다방");
-			insertState.setString(3, "서울시 천당구 천사로 77-7");
-			insertState.setString(4, "010-000-0000");
-			insertState.setString(5, "매일: 09:00-20:00");
+			String selectQuery = "SELECT * FROM BOOK";
+			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			int targetBID = 24;
+			selectState.setInt(1, 24);
+			ResultSet result = selectState.executeQuery();
 			
-			int rowsInsert = insertState.executeUpdate();
-			System.out.println(rowsInsert + "행 추가");
+			
+			if(result.next()) {
+				int bookID = result.getInt("book_id");
+				
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
