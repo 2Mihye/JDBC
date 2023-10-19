@@ -1,8 +1,10 @@
 package chap2_MVC;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class cafeModel {
@@ -133,5 +135,27 @@ public class cafeModel {
 
 	}
 
-
+	public void selectCafe(int cafeID) {
+		try {
+			Connection con = DriverManager.getConnection(url, userName, password);
+			String sql = "SELECT * FROM cafes WHERE cafe_id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, cafeID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				int cafeId = rs.getInt("cafe_id");
+				String name = rs.getString("name");
+				String address = rs.getString("address");
+				String phoneNumber = rs.getString("phone_number");
+				String operatingHours = rs.getString("operating_hours");
+				System.out.println("카페 번호 : " + cafeID + "/ 상호명 : " + name + "/ 주소 : "
+				+ address + "/ 연락처 : " + phoneNumber + "/ 운영시간 : " + operatingHours);
+			}else {
+				System.out.println("조회할 수 없습니다.");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
 }

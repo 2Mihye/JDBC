@@ -115,4 +115,12 @@ public class cafeView {
 		model.insertProduct(productID, productName, category, price, quantity);
 		System.out.println(productName + "(이)가 성공적으로 추가되었습니다.");
 	}
+	public void selectCafes() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("확힌할 카페 번호를 입력하세요 : ");
+		int cafeID = sc.nextInt();
+		
+		model.selectCafe(cafeID);
+		System.out.println("카페 조회를 완료하였습니다.");
+	}
 }

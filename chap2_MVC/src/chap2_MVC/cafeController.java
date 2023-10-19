@@ -21,7 +21,8 @@ public class cafeController {
 		while(isTrue) {
 			System.out.println("1. 카페 정보 추가");
 			System.out.println("2. 메뉴 설명 추가");
-			System.out.println("3. 종료");
+			System.out.println("3. 카페 정보 확인");
+			System.out.println("4. 종료");
 			System.out.println("원하는 작업을 선택해주세요.");
 			
 			int choice = sc.nextInt();
@@ -34,6 +35,9 @@ public class cafeController {
 				view.updateMenu();
 				break;
 			case 3:
+				view.selectCafes();
+				break;
+			case 4:
 				System.out.println("프로그램을 종료합니다.");
 				isTrue = !isTrue;
 				break;
