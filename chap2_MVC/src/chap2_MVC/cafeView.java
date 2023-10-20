@@ -48,8 +48,9 @@ public class cafeView {
 		System.out.println("운영시간을 업데이트 하세요.");
 		System.out.print("카페 ID : ");
 		int cafeID = sc.nextInt();
-		System.out.println("바꿀 운영시간 : ");
-		String operatingHours = sc.next();
+		sc.nextLine();
+		System.out.print("바꿀 운영시간 : ");
+		String operatingHours = sc.nextLine();
 		
 		model.updateCafe(operatingHours, cafeID);
 		System.out.println("운영시간이 업데이트 되었습니다.");
