@@ -62,8 +62,6 @@ public class UserMain {
 				int id = result.getInt(1);
 				// 4. return > 0 : 1이상이면 일치하도록
 				return id > 0; // 1 이상이면 true
-			} else {
-				
 			}
 
 		return false; // 일치하지 않을 때
