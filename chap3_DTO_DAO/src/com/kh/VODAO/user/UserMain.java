@@ -19,6 +19,32 @@ public class UserMain {
 		
 	}
 	
+	public boolean checkID() {
+		// 1. DB 연결 URL, USERNAME, PASSWORD
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String dbUserName = "khcafe";
+		String dbPassword = "khcafe";
+		
+		try {
+			Connection connection = DriverManager.getConnection(url, dbUserName, dbPassword);
+			// 2. sql 작성
+			String sql = "SELECT user_id FROM userinfo";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet result = ps.executeQuery();
+			
+			if(result.next()) {
+				
+			} else {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// 3. if문 활용하여 Result.next();
+		// 4. return > 0 : 1이상이면 일치하도록
+		return > 0;
+	}
+	
 	public void selectScanner() {
 		// 1. DB 연결 URL, USERNAME, PASSWORD
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -40,10 +66,11 @@ public class UserMain {
 					break; // break;가 없으면 종료되지 않고 "종료합니다"만 출력됨.
 				}
 				int userID = Integer.parseInt(input);
-				String sql = "SELECT * FROM USERINFO WHERE user_id = ?";
-				// String sql = "SELECT * FROM USERINFO WHERE user_id = ? AND EMAIL = ?";
+				// String sql = "SELECT * FROM USERINFO WHERE user_id = ?"; => Select One if문
+				String sql = "SELECT * FROM USERINFO WHERE user_id = ? AND EMAIL = ?";
 				PreparedStatement ps = cc.prepareStatement(sql);
 				ps.setInt(1, userID);
+				ps.setString(2, email);
 				ResultSet result = ps.executeQuery();
 				
 				
@@ -56,7 +83,20 @@ public class UserMain {
 					System.out.println("Registration Date : " + result.getDate("reg_date"));
 					System.out.println();
 				}else {
-					System.out.println("일치하는 User을 찾을 수 없습니다.");
+					// boolean ID or Email 하나가 일치하지 않는 경우 처리
+					// boolean idTrue = 아이디 일치하는지 확인하는 메서드(userID);
+					// boolean emailTrue = 이메일 일치하는지 확인하는 메서드(userEmail);
+					boolean idTrue = checkID(userID);
+					boolean emailTrue = checkID(email);
+					
+					if(!idTrue && emailTrue) {
+						System.out.println("일치하지 않는 User ID 입니다.");
+						System.out.println();
+					} else if(idTrue && !emailTrue) {
+						System.out.println("일치하지 않는 User Email 입니다.");
+						System.out.println();
+					}
+					System.out.println("일치하는 User ID와 email을 찾을 수 없습니다.");
 					System.out.println();
 				}		
 			}
