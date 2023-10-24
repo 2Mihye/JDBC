@@ -6,6 +6,7 @@ public class ShoppingView {
 	public void showShoppingCart(List<ShoppingDTO> goods) {
 		for(ShoppingDTO g : goods) {
 			System.out.println("제품명 : " + g.getProductName());
+			System.out.println("가격 : " + g.getPrice());
 		}
 	}
 	

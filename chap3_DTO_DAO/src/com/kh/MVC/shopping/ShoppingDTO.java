@@ -16,6 +16,7 @@ public class ShoppingDTO {
 		this.stockQuantity = stockQuantity;
 	}
 
+	// Getter & Setter
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
