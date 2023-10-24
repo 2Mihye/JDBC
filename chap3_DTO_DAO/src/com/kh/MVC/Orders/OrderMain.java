@@ -16,5 +16,4 @@ public class OrderMain {
 		view.showTotalPrice(totalPrice);
 		
 	}
-
 }
