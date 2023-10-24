@@ -14,6 +14,5 @@ public class OrderMain {
 		
 		double totalPrice = controller.calculateTotalPrice(orders);
 		view.showTotalPrice(totalPrice);
-		
 	}
 }
