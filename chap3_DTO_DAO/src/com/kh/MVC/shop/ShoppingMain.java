@@ -17,7 +17,6 @@ public class ShoppingMain {
 	    ShoppingCart cart = new ShoppingCart(); // 장바구니 객체 생성
 
 	    while (true) {
-
 	        System.out.println("장바구니에 추가할 제품의 ID를 입력하세요. ");
 	        System.out.print("계산하려면 '0' 입력합니다: ");
 	        int productID = scanner.nextInt();
@@ -25,10 +24,10 @@ public class ShoppingMain {
 	        if (productID == 0) {
 	            break;
 	        }
-
-	        for (ShoppingDTO product : goods) {
-	            if (product.getProductID() == productID) {
-	                cart.addToCart(product); // 장바구니에 제품 추가
+	        
+	        for (ShoppingDTO p : goods) {
+	            if (p.getProductID() == productID) {
+	                cart.addToCart(p); // 장바구니에 제품 추가
 	               
 	                break;
 	            }
