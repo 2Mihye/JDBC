@@ -1,4 +1,4 @@
-package com.kh.MVC.shop;
+package com.kh.MVC.shopping;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,8 +37,6 @@ public class ShoppingMain {
 
 	    double totalPrice = cart.calculateTotalPrice(); // ÃÑ °¡°Ý °è»ê
 	    view.showTotalPrice(totalPrice);
-
-	   
 	}
 
 }

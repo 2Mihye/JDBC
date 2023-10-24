@@ -1,4 +1,4 @@
-package com.kh.MVC.shop;
+package com.kh.MVC.shopping;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
