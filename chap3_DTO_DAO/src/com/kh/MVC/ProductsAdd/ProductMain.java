@@ -14,7 +14,8 @@ public class ProductMain {
 		view.showProductList(products);
 		
 		// 최종 가격 계산 가져오기
-		
+		double totalPrice = controller.calculateTotalPrice(products);
+		view.showTotalPrice(totalPrice);
 	}
 
 }
